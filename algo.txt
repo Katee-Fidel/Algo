@@ -1,0 +1,37 @@
+ALGORITHM SentenceAnalyzer
+VAR
+    sentence_length, word_count, vowel_count : INTEGER := 0
+    char : CHAR := ''
+    is_vowel : BOOLEAN := FALSE
+
+BEGIN
+    PRINT("Enter your sentence ending with a point:")
+    
+    // Read the first character
+    READ(char)
+
+    WHILE (char <> '.') DO
+        // 1. Count length
+        sentence_length := sentence_length + 1
+        
+        // 2. Count vowels
+        IF (char IN ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']) THEN
+            vowel_count := vowel_count + 1
+        END_IF
+        
+        // 3. Count words (triggered by space)
+        IF (char = ' ') THEN
+            word_count := word_count + 1
+        END_IF
+        
+        // Read next character
+        READ(char)
+    END_WHILE
+    
+    // Add 1 to word_count because words = spaces + 1
+    word_count := word_count + 1
+    
+    PRINT("Length: ", sentence_length)
+    PRINT("Words: ", word_count)
+    PRINT("Vowels: ", vowel_count)
+END
